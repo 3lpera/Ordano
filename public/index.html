@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudySync - Study Group Manager</title>
-    <meta name="description" content="Manage your study groups, tasks, classes, and exams all in one place">
+    <title>Ordano - Gestor de Grupos de Estudio</title>
+    <meta name="description" content="Administra tus grupos de estudio, tareas, clases y exámenes en un solo lugar">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,307 +12,307 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar Navigation -->
+        <!-- Navegación Lateral -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h1 class="logo">StudySync</h1>
-                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+                <h1 class="logo">Ordano</h1>
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">&times;</button>
             </div>
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item active" data-view="dashboard" data-testid="link-dashboard">
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Inicio</span>
                 </a>
                 <a href="#" class="nav-item" data-view="groups" data-testid="link-groups">
-                    <span class="nav-text">Study Groups</span>
+                    <span class="nav-text">Grupos de Estudio</span>
                 </a>
                 <a href="#" class="nav-item" data-view="todos" data-testid="link-todos">
-                    <span class="nav-text">To-Do List</span>
+                    <span class="nav-text">Lista de Tareas</span>
                 </a>
                 <a href="#" class="nav-item" data-view="classes" data-testid="link-classes">
-                    <span class="nav-text">Classes</span>
+                    <span class="nav-text">Clases</span>
                 </a>
                 <a href="#" class="nav-item" data-view="exams" data-testid="link-exams">
-                    <span class="nav-text">Exams</span>
+                    <span class="nav-text">Exámenes</span>
                 </a>
             </nav>
         </aside>
 
-        <!-- Main Content -->
+        <!-- Contenido Principal -->
         <main class="main-content">
-            <!-- Mobile Header -->
+            <!-- Encabezado Móvil -->
             <header class="mobile-header">
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" data-testid="button-mobile-menu">&#9776;</button>
-                <span class="mobile-title">StudySync</span>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú" data-testid="button-mobile-menu">&#9776;</button>
+                <span class="mobile-title">Ordano</span>
             </header>
 
-            <!-- Dashboard View -->
+            <!-- Vista de Inicio -->
             <div class="view-container active" id="dashboard-view">
                 <div class="view-header">
-                    <h2 class="view-title">Dashboard</h2>
+                    <h2 class="view-title">Inicio</h2>
                 </div>
                 <div class="dashboard-grid">
                     <div class="stat-card">
                         <div class="stat-content">
-                            <p class="stat-label">Study Groups</p>
+                            <p class="stat-label">Grupos de Estudio</p>
                             <p class="stat-value" id="stat-groups" data-testid="text-stat-groups">0</p>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-content">
-                            <p class="stat-label">Active To-Dos</p>
+                            <p class="stat-label">Tareas Activas</p>
                             <p class="stat-value" id="stat-todos" data-testid="text-stat-todos">0</p>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-content">
-                            <p class="stat-label">Classes</p>
+                            <p class="stat-label">Clases</p>
                             <p class="stat-value" id="stat-classes" data-testid="text-stat-classes">0</p>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-content">
-                            <p class="stat-label">Upcoming Exams</p>
+                            <p class="stat-label">Próximos Exámenes</p>
                             <p class="stat-value" id="stat-exams" data-testid="text-stat-exams">0</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="dashboard-section">
-                    <h3 class="section-title">Upcoming Exams</h3>
+                    <h3 class="section-title">Próximos Exámenes</h3>
                     <div id="dashboard-exams" data-testid="container-dashboard-exams"></div>
                 </div>
 
                 <div class="dashboard-section">
-                    <h3 class="section-title">Recent To-Dos</h3>
+                    <h3 class="section-title">Tareas Recientes</h3>
                     <div id="dashboard-todos" data-testid="container-dashboard-todos"></div>
                 </div>
             </div>
 
-            <!-- Study Groups View -->
+            <!-- Vista de Grupos de Estudio -->
             <div class="view-container" id="groups-view">
                 <div class="view-header">
-                    <h2 class="view-title">Study Groups</h2>
-                    <button class="btn btn-primary" id="btnCreateGroup" data-testid="button-create-group">+ New Group</button>
+                    <h2 class="view-title">Grupos de Estudio</h2>
+                    <button class="btn btn-primary" id="btnCreateGroup" data-testid="button-create-group">+ Nuevo Grupo</button>
                 </div>
                 <div class="groups-grid" id="groupsGrid" data-testid="container-groups"></div>
                 <div class="empty-state" id="groupsEmpty" style="display: none;">
-                    <h3>No study groups yet</h3>
-                    <p>Create your first study group to start collaborating</p>
-                    <button class="btn btn-primary" onclick="document.getElementById('btnCreateGroup').click()">Create Group</button>
+                    <h3>No hay grupos de estudio todavía</h3>
+                    <p>Crea tu primer grupo de estudio para comenzar a colaborar</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('btnCreateGroup').click()">Crear Grupo</button>
                 </div>
             </div>
 
-            <!-- To-Dos View -->
+            <!-- Vista de Tareas -->
             <div class="view-container" id="todos-view">
                 <div class="view-header">
-                    <h2 class="view-title">To-Do List</h2>
-                    <button class="btn btn-primary" id="btnCreateTodo" data-testid="button-create-todo">+ New To-Do</button>
+                    <h2 class="view-title">Lista de Tareas</h2>
+                    <button class="btn btn-primary" id="btnCreateTodo" data-testid="button-create-todo">+ Nueva Tarea</button>
                 </div>
                 <div class="todos-container">
                     <div class="todos-list" id="todosList" data-testid="container-todos"></div>
                     <div class="empty-state" id="todosEmpty" style="display: none;">
-                        <h3>No to-dos yet</h3>
-                        <p>Add your first task to get started</p>
-                        <button class="btn btn-primary" onclick="document.getElementById('btnCreateTodo').click()">Add To-Do</button>
+                        <h3>No hay tareas todavía</h3>
+                        <p>Agrega tu primera tarea para comenzar</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('btnCreateTodo').click()">Agregar Tarea</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Classes View -->
+            <!-- Vista de Clases -->
             <div class="view-container" id="classes-view">
                 <div class="view-header">
-                    <h2 class="view-title">My Classes</h2>
-                    <button class="btn btn-primary" id="btnCreateClass" data-testid="button-create-class">+ Add Class</button>
+                    <h2 class="view-title">Mis Clases</h2>
+                    <button class="btn btn-primary" id="btnCreateClass" data-testid="button-create-class">+ Agregar Clase</button>
                 </div>
                 <div class="classes-grid" id="classesGrid" data-testid="container-classes"></div>
                 <div class="empty-state" id="classesEmpty" style="display: none;">
-                    <h3>No classes yet</h3>
-                    <p>Add your first class to start organizing your schedule</p>
-                    <button class="btn btn-primary" onclick="document.getElementById('btnCreateClass').click()">Add Class</button>
+                    <h3>No hay clases todavía</h3>
+                    <p>Agrega tu primera clase para organizar tu horario</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('btnCreateClass').click()">Agregar Clase</button>
                 </div>
             </div>
 
-            <!-- Exams View -->
+            <!-- Vista de Exámenes -->
             <div class="view-container" id="exams-view">
                 <div class="view-header">
-                    <h2 class="view-title">Exams</h2>
-                    <button class="btn btn-primary" id="btnCreateExam" data-testid="button-create-exam">+ Add Exam</button>
+                    <h2 class="view-title">Exámenes</h2>
+                    <button class="btn btn-primary" id="btnCreateExam" data-testid="button-create-exam">+ Agregar Examen</button>
                 </div>
                 <div class="exams-table-container">
                     <table class="exams-table" id="examsTable">
                         <thead>
                             <tr>
-                                <th>Class</th>
-                                <th>Exam Type</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th>Clase</th>
+                                <th>Tipo de Examen</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="examsTableBody" data-testid="container-exams"></tbody>
                     </table>
                     <div class="empty-state" id="examsEmpty" style="display: none;">
-                        <h3>No exams scheduled</h3>
-                        <p>Add your first exam to track important dates</p>
-                        <button class="btn btn-primary" onclick="document.getElementById('btnCreateExam').click()">Add Exam</button>
+                        <h3>No hay exámenes programados</h3>
+                        <p>Agrega tu primer examen para rastrear fechas importantes</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('btnCreateExam').click()">Agregar Examen</button>
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Modal for Creating/Editing Group -->
+    <!-- Modal para Crear/Editar Grupo -->
     <div class="modal" id="groupModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="groupModalTitle">Create Study Group</h3>
-                <button class="modal-close" data-modal="groupModal" aria-label="Close" data-testid="button-close-group-modal">✕</button>
+                <h3 class="modal-title" id="groupModalTitle">Crear Grupo de Estudio</h3>
+                <button class="modal-close" data-modal="groupModal" aria-label="Cerrar" data-testid="button-close-group-modal">✕</button>
             </div>
             <form id="groupForm">
                 <input type="hidden" id="groupId">
                 <div class="form-group">
-                    <label for="groupName">Group Name</label>
+                    <label for="groupName">Nombre del Grupo</label>
                     <input type="text" id="groupName" class="form-input" required data-testid="input-group-name">
                 </div>
                 <div class="form-group">
-                    <label for="groupDescription">Description</label>
+                    <label for="groupDescription">Descripción</label>
                     <textarea id="groupDescription" class="form-input" rows="3" data-testid="input-group-description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Members</label>
+                    <label>Miembros</label>
                     <div class="member-input-container">
-                        <input type="text" id="memberInput" class="form-input" placeholder="Enter member name" data-testid="input-member-name">
-                        <button type="button" class="btn btn-secondary" id="btnAddMember" data-testid="button-add-member">Add</button>
+                        <input type="text" id="memberInput" class="form-input" placeholder="Ingresa el nombre del miembro" data-testid="input-member-name">
+                        <button type="button" class="btn btn-secondary" id="btnAddMember" data-testid="button-add-member">Agregar</button>
                     </div>
                     <div class="members-list" id="membersList"></div>
                 </div>
                 <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" data-modal="groupModal" data-testid="button-cancel-group">Cancel</button>
-                    <button type="submit" class="btn btn-primary" data-testid="button-save-group">Save Group</button>
+                    <button type="button" class="btn btn-secondary" data-modal="groupModal" data-testid="button-cancel-group">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" data-testid="button-save-group">Guardar Grupo</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal for Creating/Editing To-Do -->
+    <!-- Modal para Crear/Editar Tarea -->
     <div class="modal" id="todoModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="todoModalTitle">Create To-Do</h3>
-                <button class="modal-close" data-modal="todoModal" aria-label="Close" data-testid="button-close-todo-modal">✕</button>
+                <h3 class="modal-title" id="todoModalTitle">Crear Tarea</h3>
+                <button class="modal-close" data-modal="todoModal" aria-label="Cerrar" data-testid="button-close-todo-modal">✕</button>
             </div>
             <form id="todoForm">
                 <input type="hidden" id="todoId">
                 <div class="form-group">
-                    <label for="todoTitle">Title</label>
+                    <label for="todoTitle">Título</label>
                     <input type="text" id="todoTitle" class="form-input" required data-testid="input-todo-title">
                 </div>
                 <div class="form-group">
-                    <label for="todoDescription">Description</label>
+                    <label for="todoDescription">Descripción</label>
                     <textarea id="todoDescription" class="form-input" rows="3" data-testid="input-todo-description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="todoDueDate">Due Date</label>
+                    <label for="todoDueDate">Fecha de Vencimiento</label>
                     <input type="date" id="todoDueDate" class="form-input" data-testid="input-todo-due-date">
                 </div>
                 <div class="form-group">
-                    <label for="todoAssignee">Assign To</label>
+                    <label for="todoAssignee">Asignar a</label>
                     <select id="todoAssignee" class="form-input" data-testid="select-todo-assignee">
-                        <option value="">Unassigned</option>
+                        <option value="">Sin asignar</option>
                     </select>
                 </div>
                 <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" data-modal="todoModal" data-testid="button-cancel-todo">Cancel</button>
-                    <button type="submit" class="btn btn-primary" data-testid="button-save-todo">Save To-Do</button>
+                    <button type="button" class="btn btn-secondary" data-modal="todoModal" data-testid="button-cancel-todo">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" data-testid="button-save-todo">Guardar Tarea</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal for Creating/Editing Class -->
+    <!-- Modal para Crear/Editar Clase -->
     <div class="modal" id="classModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="classModalTitle">Add Class</h3>
-                <button class="modal-close" data-modal="classModal" aria-label="Close" data-testid="button-close-class-modal">✕</button>
+                <h3 class="modal-title" id="classModalTitle">Agregar Clase</h3>
+                <button class="modal-close" data-modal="classModal" aria-label="Cerrar" data-testid="button-close-class-modal">✕</button>
             </div>
             <form id="classForm">
                 <input type="hidden" id="classId">
                 <div class="form-group">
-                    <label for="className">Class Name</label>
+                    <label for="className">Nombre de la Clase</label>
                     <input type="text" id="className" class="form-input" required data-testid="input-class-name">
                 </div>
                 <div class="form-group">
-                    <label for="classCode">Class Code</label>
-                    <input type="text" id="classCode" class="form-input" placeholder="e.g., CS101" data-testid="input-class-code">
+                    <label for="classCode">Código de Clase</label>
+                    <input type="text" id="classCode" class="form-input" placeholder="ej., MAT101" data-testid="input-class-code">
                 </div>
                 <div class="form-group">
                     <label for="classInstructor">Instructor</label>
                     <input type="text" id="classInstructor" class="form-input" data-testid="input-class-instructor">
                 </div>
                 <div class="form-group">
-                    <label for="classSchedule">Schedule</label>
-                    <input type="text" id="classSchedule" class="form-input" placeholder="e.g., MWF 10:00-11:00" data-testid="input-class-schedule">
+                    <label for="classSchedule">Horario</label>
+                    <input type="text" id="classSchedule" class="form-input" placeholder="ej., LMV 10:00-11:00" data-testid="input-class-schedule">
                 </div>
                 <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" data-modal="classModal" data-testid="button-cancel-class">Cancel</button>
-                    <button type="submit" class="btn btn-primary" data-testid="button-save-class">Save Class</button>
+                    <button type="button" class="btn btn-secondary" data-modal="classModal" data-testid="button-cancel-class">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" data-testid="button-save-class">Guardar Clase</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal for Creating/Editing Exam -->
+    <!-- Modal para Crear/Editar Examen -->
     <div class="modal" id="examModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="examModalTitle">Add Exam</h3>
-                <button class="modal-close" data-modal="examModal" aria-label="Close" data-testid="button-close-exam-modal">✕</button>
+                <h3 class="modal-title" id="examModalTitle">Agregar Examen</h3>
+                <button class="modal-close" data-modal="examModal" aria-label="Cerrar" data-testid="button-close-exam-modal">✕</button>
             </div>
             <form id="examForm">
                 <input type="hidden" id="examId">
                 <div class="form-group">
-                    <label for="examClass">Class</label>
+                    <label for="examClass">Clase</label>
                     <select id="examClass" class="form-input" required data-testid="select-exam-class">
-                        <option value="">Select a class</option>
+                        <option value="">Selecciona una clase</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="examType">Exam Type</label>
-                    <input type="text" id="examType" class="form-input" placeholder="e.g., Midterm, Final" required data-testid="input-exam-type">
+                    <label for="examType">Tipo de Examen</label>
+                    <input type="text" id="examType" class="form-input" placeholder="ej., Parcial, Final" required data-testid="input-exam-type">
                 </div>
                 <div class="form-group">
-                    <label for="examDate">Date</label>
+                    <label for="examDate">Fecha</label>
                     <input type="date" id="examDate" class="form-input" required data-testid="input-exam-date">
                 </div>
                 <div class="form-group">
-                    <label for="examTime">Time</label>
+                    <label for="examTime">Hora</label>
                     <input type="time" id="examTime" class="form-input" data-testid="input-exam-time">
                 </div>
                 <div class="form-group">
-                    <label for="examLocation">Location</label>
+                    <label for="examLocation">Ubicación</label>
                     <input type="text" id="examLocation" class="form-input" data-testid="input-exam-location">
                 </div>
                 <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" data-modal="examModal" data-testid="button-cancel-exam">Cancel</button>
-                    <button type="submit" class="btn btn-primary" data-testid="button-save-exam">Save Exam</button>
+                    <button type="button" class="btn btn-secondary" data-modal="examModal" data-testid="button-cancel-exam">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" data-testid="button-save-exam">Guardar Examen</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
+    <!-- Modal de Confirmación de Eliminación -->
     <div class="modal" id="deleteModal">
         <div class="modal-content modal-small">
             <div class="modal-header">
-                <h3 class="modal-title">Confirm Delete</h3>
-                <button class="modal-close" data-modal="deleteModal" aria-label="Close">✕</button>
+                <h3 class="modal-title">Confirmar Eliminación</h3>
+                <button class="modal-close" data-modal="deleteModal" aria-label="Cerrar">✕</button>
             </div>
-            <p id="deleteMessage" class="delete-message">Are you sure you want to delete this item?</p>
+            <p id="deleteMessage" class="delete-message">¿Estás seguro de que deseas eliminar este elemento?</p>
             <div class="modal-actions">
-                <button type="button" class="btn btn-secondary" data-modal="deleteModal" data-testid="button-cancel-delete">Cancel</button>
-                <button type="button" class="btn btn-danger" id="confirmDelete" data-testid="button-confirm-delete">Delete</button>
+                <button type="button" class="btn btn-secondary" data-modal="deleteModal" data-testid="button-cancel-delete">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete" data-testid="button-confirm-delete">Eliminar</button>
             </div>
         </div>
     </div>

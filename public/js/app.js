@@ -1,4 +1,4 @@
-// Main Application Logic
+// Lógica principal de la aplicación
 let appState = {
     groups: [],
     todos: [],
@@ -11,7 +11,7 @@ let appState = {
     deleteCallback: null,
 };
 
-// Initialize app
+// Inicializar aplicación
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initModals();
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadAllData();
 });
 
-// Navigation
+// Navegación
 function initNavigation() {
     const navItems = document.querySelectorAll('.nav-item');
     const views = document.querySelectorAll('.view-container');
@@ -29,20 +29,20 @@ function initNavigation() {
             e.preventDefault();
             const viewName = item.dataset.view;
             
-            // Update active nav item
+            // Actualizar elemento de navegación activo
             navItems.forEach(nav => nav.classList.remove('active'));
             item.classList.add('active');
             
-            // Show corresponding view
+            // Mostrar vista correspondiente
             views.forEach(view => view.classList.remove('active'));
             document.getElementById(`${viewName}-view`).classList.add('active');
             
-            // Close mobile menu
+            // Cerrar menú móvil
             document.getElementById('sidebar').classList.remove('active');
         });
     });
     
-    // Mobile menu toggle
+    // Alternador de menú móvil
     document.getElementById('mobileMenuBtn').addEventListener('click', () => {
         document.getElementById('sidebar').classList.add('active');
     });
@@ -52,7 +52,7 @@ function initNavigation() {
     });
 }
 
-// Modals
+// Modales
 function initModals() {
     const modalCloseButtons = document.querySelectorAll('.modal-close, .btn[data-modal]');
     
@@ -65,7 +65,7 @@ function initModals() {
         });
     });
     
-    // Close modal on backdrop click
+    // Cerrar modal al hacer clic en el fondo
     document.querySelectorAll('.modal').forEach(modal => {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
@@ -83,12 +83,12 @@ function closeModal(modalId) {
     document.getElementById(modalId).classList.remove('active');
 }
 
-// Forms
+// Formularios
 function initForms() {
-    // Group form
+    // Formulario de grupo
     document.getElementById('btnCreateGroup').addEventListener('click', () => {
         resetGroupForm();
-        document.getElementById('groupModalTitle').textContent = 'Create Study Group';
+        document.getElementById('groupModalTitle').textContent = 'Crear Grupo de Estudio';
         openModal('groupModal');
     });
     
@@ -103,36 +103,36 @@ function initForms() {
     
     document.getElementById('groupForm').addEventListener('submit', handleGroupSubmit);
     
-    // Todo form
+    // Formulario de tarea
     document.getElementById('btnCreateTodo').addEventListener('click', () => {
         resetTodoForm();
-        document.getElementById('todoModalTitle').textContent = 'Create To-Do';
+        document.getElementById('todoModalTitle').textContent = 'Crear Tarea';
         populateAssigneeSelect();
         openModal('todoModal');
     });
     
     document.getElementById('todoForm').addEventListener('submit', handleTodoSubmit);
     
-    // Class form
+    // Formulario de clase
     document.getElementById('btnCreateClass').addEventListener('click', () => {
         resetClassForm();
-        document.getElementById('classModalTitle').textContent = 'Add Class';
+        document.getElementById('classModalTitle').textContent = 'Agregar Clase';
         openModal('classModal');
     });
     
     document.getElementById('classForm').addEventListener('submit', handleClassSubmit);
     
-    // Exam form
+    // Formulario de examen
     document.getElementById('btnCreateExam').addEventListener('click', () => {
         resetExamForm();
-        document.getElementById('examModalTitle').textContent = 'Add Exam';
+        document.getElementById('examModalTitle').textContent = 'Agregar Examen';
         populateClassSelect();
         openModal('examModal');
     });
     
     document.getElementById('examForm').addEventListener('submit', handleExamSubmit);
     
-    // Delete confirmation
+    // Confirmación de eliminación
     document.getElementById('confirmDelete').addEventListener('click', () => {
         if (appState.deleteCallback) {
             appState.deleteCallback();
@@ -141,7 +141,7 @@ function initForms() {
     });
 }
 
-// Load all data
+// Cargar todos los datos
 async function loadAllData() {
     try {
         await Promise.all([
@@ -152,17 +152,17 @@ async function loadAllData() {
         ]);
         updateDashboard();
     } catch (error) {
-        console.error('Error loading data:', error);
+        console.error('Error al cargar datos:', error);
     }
 }
 
-// Groups
+// Grupos
 async function loadGroups() {
     try {
         appState.groups = await groupsAPI.getAll();
         renderGroups();
     } catch (error) {
-        console.error('Error loading groups:', error);
+        console.error('Error al cargar grupos:', error);
     }
 }
 
@@ -188,7 +188,7 @@ function renderGroups() {
             </div>
             ${group.description ? `<p class="group-card-description">${escapeHtml(group.description)}</p>` : ''}
             <div class="group-card-meta">
-                <span>${group.members.length} member${group.members.length !== 1 ? 's' : ''}</span>
+                <span>${group.members.length} miembro${group.members.length !== 1 ? 's' : ''}</span>
             </div>
             <div class="members-list">
                 ${group.members.map(member => `
@@ -196,8 +196,8 @@ function renderGroups() {
                 `).join('')}
             </div>
             <div class="group-card-actions">
-                <button class="btn btn-secondary btn-sm" onclick="editGroup('${group.id}')" data-testid="button-edit-group-${group.id}">Edit</button>
-                <button class="btn btn-secondary btn-sm" onclick="confirmDelete('group', '${group.id}')" data-testid="button-delete-group-${group.id}">Delete</button>
+                <button class="btn btn-secondary btn-sm" onclick="editGroup('${group.id}')" data-testid="button-edit-group-${group.id}">Editar</button>
+                <button class="btn btn-secondary btn-sm" onclick="confirmDelete('group', '${group.id}')" data-testid="button-delete-group-${group.id}">Eliminar</button>
             </div>
         </div>
     `).join('');
@@ -214,7 +214,7 @@ function addMember() {
     badge.className = 'member-badge';
     badge.innerHTML = `
         ${escapeHtml(memberName)}
-        <button type="button" class="member-remove" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+        <button type="button" class="member-remove" onclick="this.parentElement.remove()" title="Eliminar">&times;</button>
     `;
     
     membersList.appendChild(badge);
@@ -253,7 +253,7 @@ async function handleGroupSubmit(e) {
         closeModal('groupModal');
         updateDashboard();
     } catch (error) {
-        alert('Error saving group: ' + error.message);
+        alert('Error al guardar grupo: ' + error.message);
     }
 }
 
@@ -273,22 +273,22 @@ async function editGroup(id) {
         badge.className = 'member-badge';
         badge.innerHTML = `
             ${escapeHtml(member)}
-            <button type="button" class="member-remove" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+            <button type="button" class="member-remove" onclick="this.parentElement.remove()" title="Eliminar">&times;</button>
         `;
         membersList.appendChild(badge);
     });
     
-    document.getElementById('groupModalTitle').textContent = 'Edit Study Group';
+    document.getElementById('groupModalTitle').textContent = 'Editar Grupo de Estudio';
     openModal('groupModal');
 }
 
-// To-Dos
+// Tareas
 async function loadTodos() {
     try {
         appState.todos = await todosAPI.getAll();
         renderTodos();
     } catch (error) {
-        console.error('Error loading todos:', error);
+        console.error('Error al cargar tareas:', error);
     }
 }
 
@@ -320,12 +320,12 @@ function renderTodos() {
                     ${todo.description ? `<p class="todo-description">${escapeHtml(todo.description)}</p>` : ''}
                     <div class="todo-meta">
                         ${todo.dueDate ? `<span class="badge badge-${getDueDateStatus(todo.dueDate)}">${formatDate(todo.dueDate)}</span>` : ''}
-                        ${todo.assignedTo ? `<span class="badge badge-primary">Assigned to: ${escapeHtml(todo.assignedTo)}</span>` : ''}
+                        ${todo.assignedTo ? `<span class="badge badge-primary">Asignado a: ${escapeHtml(todo.assignedTo)}</span>` : ''}
                     </div>
                 </div>
                 <div class="todo-actions">
-                    <button class="btn btn-secondary btn-icon" onclick="editTodo('${todo.id}')" data-testid="button-edit-todo-${todo.id}" title="Edit">Edit</button>
-                    <button class="btn btn-secondary btn-icon" onclick="confirmDelete('todo', '${todo.id}')" data-testid="button-delete-todo-${todo.id}" title="Delete">Delete</button>
+                    <button class="btn btn-secondary btn-icon" onclick="editTodo('${todo.id}')" data-testid="button-edit-todo-${todo.id}" title="Editar">Editar</button>
+                    <button class="btn btn-secondary btn-icon" onclick="confirmDelete('todo', '${todo.id}')" data-testid="button-delete-todo-${todo.id}" title="Eliminar">Eliminar</button>
                 </div>
             </div>
         </div>
@@ -340,7 +340,7 @@ function populateAssigneeSelect() {
         group.members.forEach(member => allMembers.add(member));
     });
     
-    select.innerHTML = '<option value="">Unassigned</option>' +
+    select.innerHTML = '<option value="">Sin asignar</option>' +
         Array.from(allMembers).map(member => 
             `<option value="${escapeHtml(member)}">${escapeHtml(member)}</option>`
         ).join('');
@@ -380,7 +380,7 @@ async function handleTodoSubmit(e) {
         closeModal('todoModal');
         updateDashboard();
     } catch (error) {
-        alert('Error saving to-do: ' + error.message);
+        alert('Error al guardar tarea: ' + error.message);
     }
 }
 
@@ -397,7 +397,7 @@ async function editTodo(id) {
     populateAssigneeSelect();
     document.getElementById('todoAssignee').value = todo.assignedTo || '';
     
-    document.getElementById('todoModalTitle').textContent = 'Edit To-Do';
+    document.getElementById('todoModalTitle').textContent = 'Editar Tarea';
     openModal('todoModal');
 }
 
@@ -407,17 +407,17 @@ async function toggleTodo(id) {
         await loadTodos();
         updateDashboard();
     } catch (error) {
-        console.error('Error toggling todo:', error);
+        console.error('Error al cambiar estado de tarea:', error);
     }
 }
 
-// Classes
+// Clases
 async function loadClasses() {
     try {
         appState.classes = await classesAPI.getAll();
         renderClasses();
     } catch (error) {
-        console.error('Error loading classes:', error);
+        console.error('Error al cargar clases:', error);
     }
 }
 
@@ -448,13 +448,13 @@ function renderClasses() {
                 ` : ''}
                 ${cls.schedule ? `
                     <div class="class-card-info-item">
-                        <span>Schedule: ${escapeHtml(cls.schedule)}</span>
+                        <span>Horario: ${escapeHtml(cls.schedule)}</span>
                     </div>
                 ` : ''}
             </div>
             <div class="class-card-actions">
-                <button class="btn btn-secondary btn-sm" onclick="editClass('${cls.id}')" data-testid="button-edit-class-${cls.id}">Edit</button>
-                <button class="btn btn-secondary btn-sm" onclick="confirmDelete('class', '${cls.id}')" data-testid="button-delete-class-${cls.id}">Delete</button>
+                <button class="btn btn-secondary btn-sm" onclick="editClass('${cls.id}')" data-testid="button-edit-class-${cls.id}">Editar</button>
+                <button class="btn btn-secondary btn-sm" onclick="confirmDelete('class', '${cls.id}')" data-testid="button-delete-class-${cls.id}">Eliminar</button>
             </div>
         </div>
     `).join('');
@@ -488,7 +488,7 @@ async function handleClassSubmit(e) {
         closeModal('classModal');
         updateDashboard();
     } catch (error) {
-        alert('Error saving class: ' + error.message);
+        alert('Error al guardar clase: ' + error.message);
     }
 }
 
@@ -503,17 +503,17 @@ async function editClass(id) {
     document.getElementById('classInstructor').value = cls.instructor || '';
     document.getElementById('classSchedule').value = cls.schedule || '';
     
-    document.getElementById('classModalTitle').textContent = 'Edit Class';
+    document.getElementById('classModalTitle').textContent = 'Editar Clase';
     openModal('classModal');
 }
 
-// Exams
+// Exámenes
 async function loadExams() {
     try {
         appState.exams = await examsAPI.getAll();
         renderExams();
     } catch (error) {
-        console.error('Error loading exams:', error);
+        console.error('Error al cargar exámenes:', error);
     }
 }
 
@@ -532,7 +532,7 @@ function renderExams() {
     empty.style.display = 'none';
     
     tbody.innerHTML = appState.exams.map(exam => {
-        const className = appState.classes.find(c => c.id === exam.classId)?.name || 'Unknown';
+        const className = appState.classes.find(c => c.id === exam.classId)?.name || 'Desconocido';
         const status = getExamStatus(exam.date);
         
         return `
@@ -544,8 +544,8 @@ function renderExams() {
                 <td><span class="badge badge-${status.color}">${status.text}</span></td>
                 <td>
                     <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-secondary btn-icon" onclick="editExam('${exam.id}')" data-testid="button-edit-exam-${exam.id}" title="Edit">Edit</button>
-                        <button class="btn btn-secondary btn-icon" onclick="confirmDelete('exam', '${exam.id}')" data-testid="button-delete-exam-${exam.id}" title="Delete">Delete</button>
+                        <button class="btn btn-secondary btn-icon" onclick="editExam('${exam.id}')" data-testid="button-edit-exam-${exam.id}" title="Editar">Editar</button>
+                        <button class="btn btn-secondary btn-icon" onclick="confirmDelete('exam', '${exam.id}')" data-testid="button-delete-exam-${exam.id}" title="Eliminar">Eliminar</button>
                     </div>
                 </td>
             </tr>
@@ -555,7 +555,7 @@ function renderExams() {
 
 function populateClassSelect() {
     const select = document.getElementById('examClass');
-    select.innerHTML = '<option value="">Select a class</option>' +
+    select.innerHTML = '<option value="">Selecciona una clase</option>' +
         appState.classes.map(cls => 
             `<option value="${cls.id}">${escapeHtml(cls.name)}${cls.code ? ` (${escapeHtml(cls.code)})` : ''}</option>`
         ).join('');
@@ -590,7 +590,7 @@ async function handleExamSubmit(e) {
         closeModal('examModal');
         updateDashboard();
     } catch (error) {
-        alert('Error saving exam: ' + error.message);
+        alert('Error al guardar examen: ' + error.message);
     }
 }
 
@@ -608,17 +608,17 @@ async function editExam(id) {
     document.getElementById('examTime').value = exam.time || '';
     document.getElementById('examLocation').value = exam.location || '';
     
-    document.getElementById('examModalTitle').textContent = 'Edit Exam';
+    document.getElementById('examModalTitle').textContent = 'Editar Examen';
     openModal('examModal');
 }
 
-// Delete confirmation
+// Confirmación de eliminación
 function confirmDelete(type, id) {
     const messages = {
-        group: 'Are you sure you want to delete this study group?',
-        todo: 'Are you sure you want to delete this to-do?',
-        class: 'Are you sure you want to delete this class?',
-        exam: 'Are you sure you want to delete this exam?',
+        group: '¿Estás seguro de que deseas eliminar este grupo de estudio?',
+        todo: '¿Estás seguro de que deseas eliminar esta tarea?',
+        class: '¿Estás seguro de que deseas eliminar esta clase?',
+        exam: '¿Estás seguro de que deseas eliminar este examen?',
     };
     
     document.getElementById('deleteMessage').textContent = messages[type];
@@ -645,14 +645,14 @@ function confirmDelete(type, id) {
             }
             updateDashboard();
         } catch (error) {
-            alert('Error deleting item: ' + error.message);
+            alert('Error al eliminar elemento: ' + error.message);
         }
     };
     
     openModal('deleteModal');
 }
 
-// Dashboard
+// Panel de control
 function updateDashboard() {
     document.getElementById('stat-groups').textContent = appState.groups.length;
     document.getElementById('stat-todos').textContent = appState.todos.filter(t => !t.completed).length;
@@ -666,13 +666,13 @@ function updateDashboard() {
     });
     document.getElementById('stat-exams').textContent = upcomingExams.length;
     
-    // Render upcoming exams on dashboard
+    // Renderizar próximos exámenes en el panel
     const dashboardExams = document.getElementById('dashboard-exams');
     if (upcomingExams.length === 0) {
-        dashboardExams.innerHTML = '<p class="text-secondary">No upcoming exams</p>';
+        dashboardExams.innerHTML = '<p class="text-secondary">No hay exámenes próximos</p>';
     } else {
         dashboardExams.innerHTML = upcomingExams.slice(0, 5).map(exam => {
-            const className = appState.classes.find(c => c.id === exam.classId)?.name || 'Unknown';
+            const className = appState.classes.find(c => c.id === exam.classId)?.name || 'Desconocido';
             const status = getExamStatus(exam.date);
             
             return `
@@ -681,7 +681,7 @@ function updateDashboard() {
                         <div>
                             <strong>${escapeHtml(className)}</strong> - ${escapeHtml(exam.type)}
                             <br>
-                            <small class="text-secondary">${formatDate(exam.date)}${exam.time ? ` at ${exam.time}` : ''}</small>
+                            <small class="text-secondary">${formatDate(exam.date)}${exam.time ? ` a las ${exam.time}` : ''}</small>
                         </div>
                         <span class="badge badge-${status.color}">${status.text}</span>
                     </div>
@@ -690,12 +690,12 @@ function updateDashboard() {
         }).join('');
     }
     
-    // Render recent todos on dashboard
+    // Renderizar tareas recientes en el panel
     const dashboardTodos = document.getElementById('dashboard-todos');
     const recentTodos = appState.todos.filter(t => !t.completed).slice(0, 5);
     
     if (recentTodos.length === 0) {
-        dashboardTodos.innerHTML = '<p class="text-secondary">No active to-dos</p>';
+        dashboardTodos.innerHTML = '<p class="text-secondary">No hay tareas activas</p>';
     } else {
         dashboardTodos.innerHTML = recentTodos.map(todo => `
             <div class="card" style="margin-bottom: 1rem;">
@@ -716,7 +716,7 @@ function updateDashboard() {
     }
 }
 
-// Utility functions
+// Funciones de utilidad
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
@@ -726,7 +726,7 @@ function escapeHtml(text) {
 function formatDate(dateString) {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('es-ES', { 
         year: 'numeric', 
         month: 'short', 
         day: 'numeric' 
@@ -756,12 +756,12 @@ function getExamStatus(dateString) {
     const diffDays = Math.ceil((date - today) / (1000 * 60 * 60 * 24));
     
     if (diffDays < 0) {
-        return { text: 'Passed', color: 'gray' };
+        return { text: 'Pasado', color: 'gray' };
     } else if (diffDays === 0) {
-        return { text: 'Today', color: 'danger' };
+        return { text: 'Hoy', color: 'danger' };
     } else if (diffDays <= 7) {
-        return { text: 'This Week', color: 'warning' };
+        return { text: 'Esta Semana', color: 'warning' };
     } else {
-        return { text: 'Upcoming', color: 'success' };
+        return { text: 'Próximo', color: 'success' };
     }
 }
