@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "id": "a3b9e044-4c25-48e5-9efd-02b5b44d3170",
+    "name": "El mejor grupo de prueba",
+    "description": "prueba123",
+    "members": [
+      "Tomi",
+      "Emi"
+    ]
+  }
+]
