@@ -4,7 +4,7 @@ import path from 'path';
 
 const serverPath = path.join(process.cwd(), 'server.js');
 
-console.log('Starting StudySync server...');
+console.log('Iniciando servidor Ordano...');
 
 const serverProcess = spawn('node', [serverPath], {
   stdio: 'inherit',
@@ -12,17 +12,17 @@ const serverProcess = spawn('node', [serverPath], {
 });
 
 serverProcess.on('error', (error) => {
-  console.error('Error starting server:', error);
+  console.error('Error al iniciar el servidor:', error);
   process.exit(1);
 });
 
 serverProcess.on('exit', (code) => {
-  console.log(`Server process exited with code ${code}`);
+  console.log(`El proceso del servidor finalizó con código ${code}`);
   process.exit(code || 0);
 });
 
 process.on('SIGINT', () => {
-  console.log('\nShutting down server...');
+  console.log('\nCerrando servidor...');
   serverProcess.kill('SIGINT');
 });
 
