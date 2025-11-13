@@ -1,7 +1,7 @@
-// API Client for StudySync
+// Cliente API para interactuar con el servidor
 const API_BASE = '/api';
 
-// Helper function for API requests
+// Función base para realizar solicitudes API
 async function apiRequest(method, endpoint, data = null) {
     const options = {
         method,
@@ -29,7 +29,7 @@ async function apiRequest(method, endpoint, data = null) {
     }
 }
 
-// Study Groups API
+// API de Grupos de Estudio
 const groupsAPI = {
     getAll: () => apiRequest('GET', '/groups'),
     getOne: (id) => apiRequest('GET', `/groups/${id}`),
@@ -38,7 +38,7 @@ const groupsAPI = {
     delete: (id) => apiRequest('DELETE', `/groups/${id}`),
 };
 
-// To-Dos API
+// Api de Tareas (To-Do)
 const todosAPI = {
     getAll: () => apiRequest('GET', '/todos'),
     getOne: (id) => apiRequest('GET', `/todos/${id}`),
@@ -48,7 +48,7 @@ const todosAPI = {
     toggleComplete: (id) => apiRequest('PATCH', `/todos/${id}/toggle`),
 };
 
-// Classes API
+// API de Clases
 const classesAPI = {
     getAll: () => apiRequest('GET', '/classes'),
     getOne: (id) => apiRequest('GET', `/classes/${id}`),
@@ -57,7 +57,7 @@ const classesAPI = {
     delete: (id) => apiRequest('DELETE', `/classes/${id}`),
 };
 
-// Exams API
+// Api de exámenes
 const examsAPI = {
     getAll: () => apiRequest('GET', '/exams'),
     getOne: (id) => apiRequest('GET', `/exams/${id}`),

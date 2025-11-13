@@ -1,8 +1,8 @@
 /* ===================================
-   CSS Variables & Design Tokens
+   Variables CSS y Paletas de colores
    =================================== */
 :root {
-    /* Colors - Modern blue-based palette */
+    /* >Colores - Paleta moderna en azules */
     --color-primary: #2563eb;
     --color-primary-dark: #1d4ed8;
     --color-primary-light: #3b82f6;
@@ -25,7 +25,7 @@
     --color-sidebar: #f9fafb;
     --color-sidebar-active: #eff6ff;
     
-    /* Typography */
+    /* Tipografía */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
@@ -34,7 +34,7 @@
     --font-size-xl: 1.25rem;
     --font-size-2xl: 1.5rem;
     
-    /* Spacing */
+    /* Espaciado */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -42,23 +42,23 @@
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
     
-    /* Border radius */
+    /* Radio del Borde */
     --radius-sm: 0.375rem;
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
     
-    /* Shadows */
+    /* Sombras */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     
-    /* Transitions */
+    /* Transiciones */
     --transition-fast: 150ms ease;
     --transition-base: 200ms ease;
 }
 
 /* ===================================
-   Global Styles
+   Estilos Globales
    =================================== */
 * {
     margin: 0;
@@ -84,7 +84,7 @@ body {
     min-height: 100vh;
 }
 
-/* Sidebar */
+/* Barra (Sidebar) */
 .sidebar {
     width: 16rem;
     background-color: var(--color-sidebar);
@@ -155,7 +155,7 @@ body {
     font-size: 1.25rem;
 }
 
-/* Main Content */
+/* Contenido Principal */
 .main-content {
     flex: 1;
     margin-left: 16rem;
@@ -225,10 +225,10 @@ body {
 }
 
 /* ===================================
-   Components
+   Componentes
    =================================== */
 
-/* Buttons */
+/* Botones */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -280,7 +280,7 @@ body {
     justify-content: center;
 }
 
-/* Cards */
+/* Cartas */
 .card {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -349,7 +349,7 @@ body {
     color: var(--color-text-primary);
 }
 
-/* Groups Grid */
+/* Grid de grupos */
 .groups-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -406,7 +406,7 @@ body {
     border-top: 1px solid var(--color-border-light);
 }
 
-/* Member Badge */
+/* Badge de miembros */
 .member-badge {
     display: inline-flex;
     align-items: center;
@@ -433,7 +433,7 @@ body {
     color: var(--color-danger);
 }
 
-/* To-Do List */
+/* Lista de tareas (To-Do) */
 .todos-container {
     max-width: 800px;
 }
@@ -545,7 +545,7 @@ body {
     color: var(--color-text-secondary);
 }
 
-/* Classes Grid */
+/* Grid de Clases */
 .classes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -604,7 +604,7 @@ body {
     border-top: 1px solid var(--color-border-light);
 }
 
-/* Exams Table */
+/* Tabla de exámenes */
 .exams-table-container {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -644,7 +644,7 @@ body {
     border-bottom: none;
 }
 
-/* Empty State */
+/* Estado Vacío */
 .empty-state {
     text-align: center;
     padding: var(--spacing-2xl);
@@ -760,7 +760,7 @@ body {
     color: var(--color-text-secondary);
 }
 
-/* Forms */
+/* Formularios */
 .form-group {
     margin-bottom: var(--spacing-lg);
 }
@@ -809,7 +809,7 @@ textarea.form-input {
 }
 
 /* ===================================
-   Responsive Design
+   Diseño con respuesta
    =================================== */
 @media (max-width: 768px) {
     .sidebar {
@@ -874,7 +874,7 @@ textarea.form-input {
 }
 
 /* ===================================
-   Utility Classes
+   Clases de utilidad
    =================================== */
 .text-sm {
     font-size: var(--font-size-sm);

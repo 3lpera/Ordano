@@ -1,3 +1,4 @@
+// Importaciones de librerías
 import express from 'express';
 import { promises as fs } from 'fs';
 import path from 'path';
@@ -14,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.static('public'));
 
-// Data directory
+// Directorio de datos
 const DATA_DIR = path.join(__dirname, 'data');
 const FILES = {
     groups: path.join(DATA_DIR, 'groups.json'),
@@ -23,7 +24,7 @@ const FILES = {
     exams: path.join(DATA_DIR, 'exams.json'),
 };
 
-// Initialize data directory and files
+// Inicializar datos 
 async function initializeData() {
     try {
         await fs.mkdir(DATA_DIR, { recursive: true });
@@ -41,7 +42,7 @@ async function initializeData() {
     }
 }
 
-// Helper functions for file operations
+// Funciones de ayuda para operaciones de archivo
 async function readData(file) {
     try {
         const data = await fs.readFile(file, 'utf8');
@@ -62,10 +63,10 @@ async function writeData(file, data) {
 }
 
 // ===================================
-// STUDY GROUPS API
+// API GRUPOS DE ESTUDIO
 // ===================================
 
-// Get all groups
+// GET todos los grupos
 app.get('/api/groups', async (req, res) => {
     try {
         const groups = await readData(FILES.groups);
@@ -75,7 +76,7 @@ app.get('/api/groups', async (req, res) => {
     }
 });
 
-// Get single group
+// GET grupo individual
 app.get('/api/groups/:id', async (req, res) => {
     try {
         const groups = await readData(FILES.groups);
@@ -91,7 +92,7 @@ app.get('/api/groups/:id', async (req, res) => {
     }
 });
 
-// Create group
+// POST crear grupo
 app.post('/api/groups', async (req, res) => {
     try {
         const { name, description, members } = req.body;
@@ -117,7 +118,7 @@ app.post('/api/groups', async (req, res) => {
     }
 });
 
-// Update group
+// PUT actualizar grupo
 app.put('/api/groups/:id', async (req, res) => {
     try {
         const { name, description, members } = req.body;
@@ -142,7 +143,7 @@ app.put('/api/groups/:id', async (req, res) => {
     }
 });
 
-// Delete group
+// DELETE eliminar grupo
 app.delete('/api/groups/:id', async (req, res) => {
     try {
         const groups = await readData(FILES.groups);
@@ -160,10 +161,10 @@ app.delete('/api/groups/:id', async (req, res) => {
 });
 
 // ===================================
-// TO-DOS API
+// API Tareas (To-Do)
 // ===================================
 
-// Get all todos
+// GET todos las tareas
 app.get('/api/todos', async (req, res) => {
     try {
         const todos = await readData(FILES.todos);
@@ -173,7 +174,7 @@ app.get('/api/todos', async (req, res) => {
     }
 });
 
-// Get single todo
+// GET tarea individual
 app.get('/api/todos/:id', async (req, res) => {
     try {
         const todos = await readData(FILES.todos);
@@ -189,7 +190,7 @@ app.get('/api/todos/:id', async (req, res) => {
     }
 });
 
-// Create todo
+// POST crear tarea
 app.post('/api/todos', async (req, res) => {
     try {
         const { title, description, dueDate, assignedTo } = req.body;
@@ -217,7 +218,7 @@ app.post('/api/todos', async (req, res) => {
     }
 });
 
-// Update todo
+// PUT actualizar tarea
 app.put('/api/todos/:id', async (req, res) => {
     try {
         const { title, description, dueDate, assignedTo, completed } = req.body;
@@ -244,7 +245,7 @@ app.put('/api/todos/:id', async (req, res) => {
     }
 });
 
-// Toggle todo completion
+// PATCH toggle tarea completada
 app.patch('/api/todos/:id/toggle', async (req, res) => {
     try {
         const todos = await readData(FILES.todos);
@@ -263,7 +264,7 @@ app.patch('/api/todos/:id/toggle', async (req, res) => {
     }
 });
 
-// Delete todo
+// DELETE eliminar tarea
 app.delete('/api/todos/:id', async (req, res) => {
     try {
         const todos = await readData(FILES.todos);
@@ -281,10 +282,10 @@ app.delete('/api/todos/:id', async (req, res) => {
 });
 
 // ===================================
-// CLASSES API
+// API CLASES
 // ===================================
 
-// Get all classes
+// GET todas las clases
 app.get('/api/classes', async (req, res) => {
     try {
         const classes = await readData(FILES.classes);
@@ -294,7 +295,7 @@ app.get('/api/classes', async (req, res) => {
     }
 });
 
-// Get single class
+// GET clase individual
 app.get('/api/classes/:id', async (req, res) => {
     try {
         const classes = await readData(FILES.classes);
@@ -310,7 +311,7 @@ app.get('/api/classes/:id', async (req, res) => {
     }
 });
 
-// Create class
+// POST crear clase
 app.post('/api/classes', async (req, res) => {
     try {
         const { name, code, instructor, schedule } = req.body;
@@ -337,7 +338,7 @@ app.post('/api/classes', async (req, res) => {
     }
 });
 
-// Update class
+// PUT actualizar clase
 app.put('/api/classes/:id', async (req, res) => {
     try {
         const { name, code, instructor, schedule } = req.body;
@@ -363,7 +364,7 @@ app.put('/api/classes/:id', async (req, res) => {
     }
 });
 
-// Delete class
+// DELETE eliminar clase
 app.delete('/api/classes/:id', async (req, res) => {
     try {
         const classes = await readData(FILES.classes);
@@ -381,10 +382,10 @@ app.delete('/api/classes/:id', async (req, res) => {
 });
 
 // ===================================
-// EXAMS API
+// API EXAMENES
 // ===================================
 
-// Get all exams
+// GET todos los exámenes
 app.get('/api/exams', async (req, res) => {
     try {
         const exams = await readData(FILES.exams);
@@ -394,7 +395,7 @@ app.get('/api/exams', async (req, res) => {
     }
 });
 
-// Get single exam
+// GET examen individual
 app.get('/api/exams/:id', async (req, res) => {
     try {
         const exams = await readData(FILES.exams);
@@ -410,7 +411,7 @@ app.get('/api/exams/:id', async (req, res) => {
     }
 });
 
-// Create exam
+// POST crear examen
 app.post('/api/exams', async (req, res) => {
     try {
         const { classId, type, date, time, location } = req.body;
@@ -438,7 +439,7 @@ app.post('/api/exams', async (req, res) => {
     }
 });
 
-// Update exam
+// PUT actualizar examen
 app.put('/api/exams/:id', async (req, res) => {
     try {
         const { classId, type, date, time, location } = req.body;
@@ -465,7 +466,7 @@ app.put('/api/exams/:id', async (req, res) => {
     }
 });
 
-// Delete exam
+// DELETE eliminar examen 
 app.delete('/api/exams/:id', async (req, res) => {
     try {
         const exams = await readData(FILES.exams);
@@ -482,26 +483,24 @@ app.delete('/api/exams/:id', async (req, res) => {
     }
 });
 
-// Start server
+// Iniciar servidor
 async function startServer() {
     await initializeData();
     
     app.listen(PORT, '0.0.0.0', () => {
         console.log(`
 ╔════════════════════════════════════════╗
-║        StudySync Server Ready!         ║
+║        Server ORDANO iniciado!         ║
 ╚════════════════════════════════════════╝
 
-📚 Server running on http://0.0.0.0:${PORT}
-🌐 Visit http://localhost:${PORT} in your browser
-
-Features:
-  ✓ Study Groups Management
-  ✓ To-Do Lists with Assignments
-  ✓ Class Scheduling
-  ✓ Exam Tracking
-  
-Data Storage: JSON files in ./data/
+📚 Server corriendo en http://0.0.0.0:${PORT}
+🌐 Visitá http://localhost:${PORT} en tu navegador
+📂 API Endpoints:
+    - /api/groups
+    - /api/todos
+    - /api/classes
+    - /api/exams
+Almacenamiento de datos en: ./data/*.json
         `);
     });
 }
