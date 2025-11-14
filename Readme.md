@@ -679,34 +679,6 @@ apiRequest(method, endpoint, data)
 
 ---
 
-## Configuración y Ejecución
-
-### Instalación
-
-```bash
-npm install
-```
-
-### Desarrollo
-
-```bash
-npm run dev
-```
-
-Esto inicia:
-- Servidor backend en puerto 5000
-- Servidor de desarrollo Vite
-- Recarga en caliente (Hot reload)
-
-### Producción
-
-```bash
-npm run build
-npm start
-```
-
----
-
 ## Características Principales
 
 1. **Gestión de Grupos de Estudio**
@@ -745,13 +717,13 @@ npm start
 
 ## Seguridad
 
-- Escapado de HTML para prevenir XSS
+- Escapado de HTML para prevenir XSS  (Cross-Site Scripting)
 - Validación de datos en cliente y servidor
 - No hay autenticación (aplicación de demostración)
 
 ---
 
-## Mejoras Futuras Sugeridas
+## Mejoras Futuras:
 
 1. Autenticación de usuarios
 2. Base de datos real (PostgreSQL/MySQL)
@@ -768,15 +740,9 @@ npm start
 
 ## Licencia
 
-Este proyecto es una aplicación de demostración educativa.
+Proyecto para FACCI 2025 (Programación), 9º4, Colegio San Pablo.
+- Joaquín Peraza, Tomás Lamas (Desarrolladores primarios)
+- Stefano Cortazo, Juan Bautista Muñoz, Emiliano Veiga (Equipo creativo, escritura de informe)
+- Patrick Esmerode (Apoyo creativo)
 
----
 
-## Soporte
-
-Para preguntas o problemas, por favor crea un issue en el repositorio del proyecto.
-
----
-
-**Última actualización**: Noviembre 2025  
-**Versión de la documentación**: 1.0
